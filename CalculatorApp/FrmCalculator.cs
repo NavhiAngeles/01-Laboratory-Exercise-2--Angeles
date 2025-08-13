@@ -12,8 +12,11 @@ namespace CalculatorApp
 {
     public partial class FrmCalculator : Form
     {
+        public delegate T Formula<T>(T num1, T num2);
+
         CalculatorClass cal = new CalculatorClass();
-        double num1, num2 ;
+        double num1, num2;
+       
         public FrmCalculator()
         {
             InitializeComponent();
@@ -23,11 +26,11 @@ namespace CalculatorApp
             comboBox1.Items.Add(" / ");
         }
 
-        public delegate T Information<T>(T num1, T num2 );
+        public delegate T Formula<T>(T num1, T num2);
 
         public class CalculatorClass
         {
-            public Information<double> formula;
+            public Formula<double> formula;
 
             public double GetSum(double num1, double num2)
             {
@@ -50,7 +53,7 @@ namespace CalculatorApp
                 return num1 / num2;
             }
 
-            public event EventHandler CalculatorEvent
+            public static event Formula<double> CalculatorEvent
             {
                 add
                 {
@@ -70,9 +73,41 @@ namespace CalculatorApp
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            num1 = Convert.ToDouble(textBox1);
-            num2 = Convert.ToDouble(textBox2);
-            
+            num1 = Convert.ToDouble(textBox1.Text);
+            num2 = Convert.ToDouble(textBox2.Text);
+           
+
+            if (comboBox1.Text == "+")
+            {
+                CalculatorClass.CalculatorEvent += new Formula<double>(cal.GetSum);
+                textBox3.Text = cal.GetSum(num1, num2).ToString();
+            }else if (comboBox1.Text == "-")
+            {
+                CalculatorClass.CalculatorEvent += new Formula<double>(cal.GetDiff);
+                textBox3.Text = cal.GetDiff(num1, num2).ToString();
+            }
+            else if (comboBox1.Text == "*")
+            {
+                CalculatorClass.CalculatorEvent += new Formula<double>(cal.GetProd);
+                textBox3.Text = cal.GetProd(num1, num2).ToString();
+            }
+            else if (comboBox1.Text == "/")
+            {
+                try
+                {
+                    CalculatorClass.CalculatorEvent += new Formula<double>(cal.GetQuo);
+                    textBox3.Text = cal.GetQuo(num1, num2).ToString();
+                }
+                catch (DivideByZeroException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a valid operation.");
+
+            }
         }
     }
 }
