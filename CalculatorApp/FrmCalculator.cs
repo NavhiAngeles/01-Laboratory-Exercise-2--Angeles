@@ -12,6 +12,8 @@ namespace CalculatorApp
 {
     public partial class FrmCalculator : Form
     {
+        CalculatorClass cal = new CalculatorClass();
+        double num1, num2 ;
         public FrmCalculator()
         {
             InitializeComponent();
@@ -21,7 +23,7 @@ namespace CalculatorApp
             comboBox1.Items.Add(" / ");
         }
 
-        public delegate T Information<T>(T arg1);
+        public delegate T Information<T>(T num1, T num2 );
 
         public class CalculatorClass
         {
@@ -30,7 +32,7 @@ namespace CalculatorApp
             public double GetSum(double num1, double num2)
             {
                 return num1 + num2;
-            }   
+            }
             public double GetDiff(double num1, double num2)
             {
                 return num1 - num2;
@@ -52,21 +54,25 @@ namespace CalculatorApp
             {
                 add
                 {
-                 Console.WriteLine("Added the Delegate");
+                    Console.WriteLine("Added the Delegate");
                 }
                 remove
                 {
                     Console.WriteLine("Removed the Delegate");
                 }
 
-
-
-
             }
 
-        private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
+            private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+            {
 
+            }
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            num1 = Convert.ToDouble(textBox1);
+            num2 = Convert.ToDouble(textBox2);
+            
         }
     }
 }
