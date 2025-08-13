@@ -36,6 +36,7 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -124,12 +125,24 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "__________________________";
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.PeachPuff;
+            this.button1.Font = new System.Drawing.Font("Microsoft YaHei UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(145, 281);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(126, 43);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "Calculate";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
             // FrmCalculator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PeachPuff;
-            this.ClientSize = new System.Drawing.Size(419, 300);
+            this.ClientSize = new System.Drawing.Size(422, 350);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.textBox3);
@@ -156,6 +169,7 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button button1;
     }
 }
 
